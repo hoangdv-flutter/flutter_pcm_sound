@@ -185,6 +185,14 @@ public class FlutterPcmSoundPlugin implements
                     // Reset the feed callback flag
                     mDidInvokeFeedCallback = false;
 
+                    if (mSamples.isEmpty()) {
+                        if (mRemainingFrames() <= mFeedThreshold && !mDidInvokeFeedCallback) {
+                            mDidInvokeFeedCallback = true;
+                            mainThreadHandler.post(this::invokeFeedCallback);
+                        }
+                    }
+
+
                     result.success(true);
                     break;
                 }

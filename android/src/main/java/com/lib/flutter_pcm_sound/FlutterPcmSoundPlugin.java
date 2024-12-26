@@ -162,7 +162,7 @@ public class FlutterPcmSoundPlugin implements
                 case "feed": {
 
                     // check setup (to match iOS behavior)
-                    if (mDidSetup == false) {
+                    if (!mDidSetup) {
                         result.error("Setup", "must call setup first", null);
                         return;
                     }

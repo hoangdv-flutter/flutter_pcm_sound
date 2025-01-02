@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pcm_sound/flutter_pcm_sound.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,11 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PcmSoundApp();
+    return const PcmSoundApp();
   }
 }
 
 class PcmSoundApp extends StatefulWidget {
+  const PcmSoundApp({Key? key}) : super(key: key);
+
   @override
   _PcmSoundAppState createState() => _PcmSoundAppState();
 }
@@ -50,6 +52,7 @@ class _PcmSoundAppState extends State<PcmSoundApp> {
     await FlutterPcmSound.feed(PcmArrayInt16.fromList(frames));
   }
 
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
@@ -58,7 +61,7 @@ class _PcmSoundAppState extends State<PcmSoundApp> {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Flutter PCM Sound'),
+          title: const Text('Flutter PCM Sound'),
         ),
         body: Center(
           child: Column(
@@ -69,7 +72,7 @@ class _PcmSoundAppState extends State<PcmSoundApp> {
                   FlutterPcmSound.setFeedCallback(_onFeed);
                   _onFeed(0); // start feeding
                 },
-                child: Text('Play'),
+                child: const Text('Play'),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -78,7 +81,7 @@ class _PcmSoundAppState extends State<PcmSoundApp> {
                     _remainingFrames = 0;
                   });
                 },
-                child: Text('Stop'),
+                child: const Text('Stop'),
               ),
               Text('$_remainingFrames Remaining Frames')
             ],
